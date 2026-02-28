@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fire Fighting AI Foundation – Firefighting AI Nonprofit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Fire Fighting AI Foundation is a nonprofit using artificial intelligence to prevent, detect, and reduce the impact of fires."
+  />
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #151821;
+      --accent: #ff6b35;
+      --accent-soft: #ffb38a;
+      --text: #f5f5f5;
+      --muted: #b3b7c3;
+      --max-width: 960px;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1b1f2f 0, #05060a 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 107, 53, 0.12),
+        transparent 55%
+      );
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: radial-gradient(circle at 30% 20%, #ffe6d8, #ff6b35 55%, #b83211);
+      box-shadow: 0 0 12px rgba(255, 107, 53, 0.7);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-soft);
+    }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3rem 1.25rem 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 107, 53, 0.12);
+      color: var(--accent-soft);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 0.6rem 1.3rem;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1b0b07;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #ff7f52;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-soft);
+      border: 1px solid rgba(255, 179, 138, 0.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-soft);
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-visual {
+      background: radial-gradient(circle at 20% 0, #ffb38a22, transparent 55%),
+        radial-gradient(circle at 80% 100%, #ff6b3520, transparent 55%),
+        var(--card);
+      border-radius: 18px;
+      padding: 1.5rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual h2 {
+      font-size: 1rem;
+      margin: 0 0 0.75rem;
+      color: var(--accent-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    .hero-visual p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .risk-card {
+      background: rgba(5, 6, 10, 0.7);
+      border-radius: 10px;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.8rem;
+    }
+
+    .risk-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .risk-value {
+      font-weight: 600;
+    }
+
+    .risk-high {
+      color: var(--accent-soft);
+    }
+
+    .risk-medium {
+      color: #ffd27f;
+    }
+
+    .risk-low {
+      color: #7fe3a1;
+    }
+
+    .risk-bar {
+      margin-top: 0.25rem;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .risk-bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #7fe3a1, #ffd27f, #ff6b35);
+      width: 78%;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+
+    .chip {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2.section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 40rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .pill-list li {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: rgba(10, 11, 18, 0.9);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0.25rem 0 0.6rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-soft);
+      margin-bottom: 0.35rem;
+    }
+
+    .list {
+      padding-left: 1.1rem;
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .list li + li {
+      margin-top: 0.2rem;
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .who-item {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .who-label {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .cta-panel {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 107, 53, 0.18),
+        rgba(10, 11, 18, 0.95)
+      );
+      border-radius: 16px;
+      padding: 1.5rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .cta-panel h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.3rem;
+    }
+
+    .cta-panel p {
+      margin: 0 0 0.9rem;
+      font-size: 0.95rem;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: #2b120b;
+    }
+
+    .contact-block {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-block strong {
+      color: var(--text);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1.2rem 1.25rem 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 2.2rem;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-2,
+      .who-grid,
+      .cta-panel {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Fire Fighting AI Foundation</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#what-we-do">What we do</a>
+        <a href="#who-we-serve">Who we serve</a>
+        <a href="#get-involved">Get involved</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="hero-badge">
+          <span>Nonprofit • Fire safety • AI</span>
+        </div>
+        <h1 class="hero-title">Harnessing intelligence to prevent the next fire disaster.</h1>
+        <p class="hero-subtitle">
+          Fire Fighting AI Foundation is a nonprofit dedicated to using artificial intelligence to
+          prevent, detect, and reduce the impact of fires—before they become disasters.
+        </p>
+        <div class="hero-actions">
+          <a href="#get-involved" class="btn-primary">
+            Get involved
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="#what-we-do" class="btn-secondary">Explore our work</a>
+        </div>
+        <p class="hero-meta">
+          We bring together engineers, firefighters, policymakers, and communities to turn data
+          into action: smarter prevention, faster response, and safer neighborhoods.
+        </p>
+      </div>
+
+      <aside class="hero-visual" aria-label="Fire risk intelligence preview">
+        <h2>Live risk intelligence</h2>
+        <p>
+          AI models synthesize weather, vegetation, infrastructure, and historical incidents to
+          highlight where the next ignition is most likely—and what to do about it.
+        </p>
+        <div class="risk-grid">
+          <div class="risk-card">
+            <div class="risk-label">Region</div>
+            <div class="risk-value risk-high">Wildland–urban interface</div>
+            <div class="risk-bar">
+              <div class="risk-bar-fill"></div>
+            </div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-label">Today’s risk</div>
+            <div class="risk-value risk-medium">Elevated • Red flag winds</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-label">Top driver</div>
+            <div class="risk-value">Vegetation + wind corridor</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-label">Recommended action</div>
+            <div class="risk-value risk-low">Targeted inspections &amp; outreach</div>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Early warning</span>
+          <span class="chip">Resource planning</span>
+          <span class="chip">Community compliance</span>
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section id="mission">
+      <h2 class="section-title">Our mission</h2>
+      <p class="section-intro">
+        Fire Fighting AI Foundation exists to close the gap between what we know about fire risk and
+        what we actually do about it. We use AI to turn scattered data into clear, actionable
+        insight—so communities can act before a spark becomes a disaster.
+      </p>
+      <ul class="pill-list">
+        <li>Prevention first</li>
+        <li>Field-ready tools</li>
+        <li>Transparent, ethical AI</li>
+        <li>Community-centered design</li>
+      </ul>
+    </section>
+
+    <section id="why">
+      <h2 class="section-title">Why we exist</h2>
+      <p class="section-intro">
+        Every year, fires destroy homes, habitats, and lives. Many of these incidents are
+        predictable—and preventable. We believe technology should serve as an early shield, not
+        just a late alarm.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">Rising risk</div>
+          <h3>Longer seasons, higher stakes</h3>
+          <p>
+            Hotter temperatures, longer fire seasons, and denser development are increasing fire
+            danger across regions that were once considered low risk.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">Fragmented data</div>
+          <h3>Signals, but no single picture</h3>
+          <p>
+            Critical information is scattered across agencies, sensors, and reports—making it hard
+            to see risk clearly or act in time.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">Under-resourced</div>
+          <h3>Communities left behind</h3>
+          <p>
+            High-risk areas often lack tools, training, and real-time insights. We focus on
+            practical, accessible solutions that can be deployed where they’re needed most.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="what-we-do">
+      <h2 class="section-title">What we do</h2>
+      <p class="section-intro">
+        We design and deploy AI-powered tools that support prevention, planning, and response—always
+        in partnership with the people on the front lines.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">Risk intelligence</div>
+          <h3>Community risk mapping</h3>
+          <p>
+            We develop AI models that analyze weather, vegetation, infrastructure, and historical
+            incidents to identify high-risk zones and patterns.
+          </p>
+          <ul class="list">
+            <li>Neighborhood-level risk scores</li>
+            <li>Scenario-based planning maps</li>
+            <li>Prioritized mitigation recommendations</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="tag">Decision support</div>
+          <h3>Tools for first responders</h3>
+          <p>
+            We design decision-support tools that help agencies simulate fire spread, assess
+            resource needs, and visualize risk in real time.
+          </p>
+          <ul class="list">
+            <li>Pre-incident planning dashboards</li>
+            <li>Dynamic resource allocation insights</li>
+            <li>Training and tabletop simulation support</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="tag">Compliance &amp; prevention</div>
+          <h3>Clear guidance from complex codes</h3>
+          <p>
+            We translate complex codes, regulations, and best practices into clear, actionable
+            guidance—powered by AI—to help property owners and communities stay safer and compliant.
+          </p>
+          <ul class="list">
+            <li>Property-level risk and compliance checkups</li>
+            <li>Tailored mitigation checklists</li>
+            <li>Support for inspectors and HOAs</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="tag">Education &amp; open knowledge</div>
+          <h3>Learning and collaboration</h3>
+          <p>
+            We create accessible resources, workshops, and open datasets so that students,
+            researchers, and local leaders can build on and improve fire safety solutions.
+          </p>
+          <ul class="list">
+            <li>Workshops and training sessions</li>
+            <li>Open, documented datasets where possible</li>
+            <li>Student and research collaborations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <h2 class="section-title">Our approach</h2>
+      <p class="section-intro">
+        Technology alone doesn’t solve safety. Our work is grounded in the lived experience of
+        firefighters, inspectors, and residents.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Human-centered</h3>
+          <p>
+            We build with firefighters, inspectors, and residents—not just for them. Every tool is
+            shaped by real-world workflows and constraints.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Transparent &amp; ethical</h3>
+          <p>
+            We prioritize explainable models, clear documentation, and responsible use. Safety,
+            equity, and accountability guide every deployment.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Collaborative</h3>
+          <p>
+            We partner with agencies, universities, and community organizations to test, refine, and
+            scale what works—sharing lessons along the way.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="who-we-serve">
+      <h2 class="section-title">Who we serve</h2>
+      <p class="section-intro">
+        Our work is designed to support everyone with a stake in fire safety—from the first unit on
+        scene to the resident clearing brush in their backyard.
+      </p>
+      <div class="who-grid">
+        <div class="who-item">
+          <div class="who-label">Fire departments &amp; first responders</div>
+          <div>
+            Seeking better situational awareness, planning tools, and training support rooted in
+            real data.
+          </div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Cities, counties &amp; HOAs</div>
+          <div>
+            Needing data-driven fire prevention strategies, risk mapping, and compliance support for
+            their communities.
+          </div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Residents &amp; property owners</div>
+          <div>
+            Wanting to understand and reduce their fire risk with clear, practical, and local
+            guidance.
+          </div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Researchers &amp; students</div>
+          <div>
+            Exploring applied AI for public safety and looking for real-world problems, data, and
+            collaboration opportunities.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="get-involved">
+      <div class="cta-panel">
+        <div>
+          <h2>Get involved</h2>
+          <p>
+            Whether you bring technical skills, field experience, or community leadership, there’s a
+            role for you in building safer, more fire-resilient communities.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">
+              Contact us
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#contact" class="btn-secondary">Partner with us</a>
+          </div>
+          <p class="cta-note">
+            We are in an early, building phase—your input can directly shape our pilots, tools, and
+            priorities.
+          </p>
+        </div>
+        <div>
+          <h3 style="margin-top: 0; font-size: 1rem;">Ways to support</h3>
+          <ul class="list">
+            <li><strong>Donate:</strong> Help us build and deploy life-saving tools in high-risk communities.</li>
+            <li><strong>Partner:</strong> Fire agencies, cities, HOAs, and community groups—co-design pilots with us.</li>
+            <li><strong>Collaborate:</strong> Engineers, data scientists, designers, and educators—lend your skills to real-world impact.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-intro">
+        Ready to explore a pilot, share a challenge from the field, or support the mission? Reach
+        out and let’s talk.
+      </p>
+      <div class="contact-block">
+        <p>
+          <strong>Fire Fighting AI Foundation</strong><br />
+          Email: <a href="mailto:keskinbera7@gmail.com">keskinbera7@gmail.com</a><br />
+          <!-- Replace with your real contact details and mailing address as needed. -->
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Fire Fighting AI Foundation. All rights reserved.
+  </footer>
+
+  <script>
+    // Simple year updater
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+```
